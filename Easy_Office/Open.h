@@ -1,10 +1,7 @@
 #pragma once
-#include<windows.h>
-#include<string>
-#include<map>
 
-//1.first ,you need to OpenOffice a class;
-//2.then ,you can use Excel(),PPT(),NX(),Word() directly;
+class OpenOffice;
+extern thread_local OpenOffice Office;
 
 class OpenOffice //it can just use once
 {
@@ -12,22 +9,17 @@ public:
     OpenOffice();
 
     ~OpenOffice();
+    [[nodiscard]] bool GetFlag()const;
 
-    IUnknown* Opentemplate(LPCOLESTR value)const;
+    [[nodiscard]] bool GetAgreement()const;
 
-    void Excel(const std::wstring& name);
+    void ChangeAgreement(bool temp);
 
-    void Word(const std::wstring& name);
-
-    void PPT(const std::wstring& name);
-
-    void Outlook(const std::wstring& name);
-
-    void Operation(const std::wstring& name,IUnknown* ptemplate);
-
-    [[nodiscard]] IUnknown* Find(const std::wstring& name) const;
+    //first know cpp can delete the operation
+    OpenOffice(const OpenOffice&)=delete;
+    OpenOffice& operator=(const OpenOffice&)=delete;
 
 private:
-    std::map<std::wstring,IUnknown*> remember;
     bool flag=true;
+    bool agreement=true;
 };
