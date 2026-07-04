@@ -10,7 +10,7 @@ Use C++ COM component to quickly control Excel and Word, simplify Office seconda
 
 ## Build
 1. Clone this repository
-2. Configure CMake in CLion
+2. Configure CMake
 3. Build and run the demo project
 
 ## License
